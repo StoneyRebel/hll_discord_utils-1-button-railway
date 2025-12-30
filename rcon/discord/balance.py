@@ -104,17 +104,15 @@ class Balance (commands.Cog, DiscordBase):
             
             if not self.msg_id:
                 self.msg_id = self.webhook.send(embeds=[wt], wait=True).id
-                self.insert_Message_Id(__name__, self.msg_id)  
+                self.insert_Message_Id(__name__, self.msg_id)
                 self.insert_Balance (self.limits, allies, axis)
             else:
                 try:
-                    # Check if the message still exists.
-                    self.webhook.fetch_message(self.msg_id)
-                    # Edit the message if it exists.
+                    # Try to edit the message directly
                     self.webhook.edit_message(message_id=self.msg_id, embeds=[wt])
                     self.insert_Balance (self.limits, allies, axis)
 
-                except discord.NotFound:
+                except (discord.NotFound, discord.HTTPException):
                     logger.warning(f"Message with ID {self.msg_id} not found. Sending a new message.")
                     self.msg_id = self.webhook.send(embeds=[wt], wait=True).id
                     self.update_Message_Id (__name__, self.msg_id)
