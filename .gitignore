@@ -1,0 +1,18 @@
+# Python
+Examples/
+Information/
+venv/
+__pycache__/
+*.pyc
+*.log
+*.log.*
+*.json.*
+
+# MacOS
+.DS_Store
+sync.sh
+
+# Project
+config.json
+
+hll_discord_helper.db*
