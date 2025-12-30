@@ -10,9 +10,16 @@ logger = logging.getLogger(__name__)
 
 def get_env(key, default=None, type_cast=str):
     """Get environment variable with type casting."""
-    value = os.environ.get(key, default)
+    value = os.environ.get(key)
+
+    # If env var not set, return default
     if value is None:
         return default
+
+    # If empty string, return default
+    if value == '':
+        return default
+
     if type_cast == bool:
         return value.lower() in ('true', '1', 'yes', 'on')
     if type_cast == int:
@@ -27,8 +34,8 @@ def get_env(key, default=None, type_cast=str):
             return default
     if type_cast == list:
         try:
-            return json.loads(value) if value else default
-        except json.JSONDecodeError:
+            return json.loads(value)
+        except (json.JSONDecodeError, TypeError):
             return default
     return value
 
