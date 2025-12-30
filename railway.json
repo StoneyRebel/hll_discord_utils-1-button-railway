@@ -1,5 +1,5 @@
 {
-  "$schema": "https://railway.app/railway.schema.json",
+  "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "DOCKERFILE",
     "dockerfilePath": "Dockerfile"
@@ -7,77 +7,6 @@
   "deploy": {
     "startCommand": "python main.py",
     "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 10,
-    "envVars": {
-      "DISCORD_TOKEN": {
-        "description": "Your Discord bot token",
-        "required": true
-      },
-      "API_URL": {
-        "description": "RCON API endpoint URL",
-        "required": true
-      },
-      "STATS_URL": {
-        "description": "Stats API endpoint URL",
-        "required": true
-      },
-      "BEARER_TOKEN": {
-        "description": "RCON authentication token",
-        "required": true
-      },
-      "SERVER_NUMBER": {
-        "description": "Server identifier number",
-        "default": "1"
-      },
-      "LOG_LEVEL": {
-        "description": "Logging level (DEBUG, INFO, WARNING, ERROR)",
-        "default": "INFO"
-      },
-      "MAP_VOTE_ENABLED": {
-        "description": "Enable map voting feature",
-        "default": "false"
-      },
-      "MAP_VOTE_CHANNEL_ID": {
-        "description": "Discord channel ID for map voting"
-      },
-      "REGISTER_PLAYER_ENABLED": {
-        "description": "Enable player registration",
-        "default": "false"
-      },
-      "SERVER_STATUS_ENABLED": {
-        "description": "Enable server status updates",
-        "default": "false"
-      },
-      "SERVER_STATUS_WEBHOOK": {
-        "description": "Discord webhook URL for server status"
-      },
-      "MAP_ROTATION_ENABLED": {
-        "description": "Enable map rotation tracking",
-        "default": "false"
-      },
-      "MAP_ROTATION_WEBHOOK": {
-        "description": "Discord webhook URL for map rotation"
-      },
-      "AUTO_LEVEL_ENABLED": {
-        "description": "Enable adaptive level cap",
-        "default": "false"
-      },
-      "AUTO_LEVEL_MIN_LEVEL": {
-        "description": "Minimum level requirement",
-        "default": "50"
-      },
-      "COMFORT_FUNCTIONS_ENABLED": {
-        "description": "Enable comfort functions",
-        "default": "false"
-      },
-      "ARTILLERY_CALCULATOR_ENABLED": {
-        "description": "Enable artillery calculator",
-        "default": "false"
-      },
-      "SERVER_BALANCE_ENABLED": {
-        "description": "Enable server balance tracking",
-        "default": "false"
-      }
-    }
+    "restartPolicyMaxRetries": 10
   }
 }

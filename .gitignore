@@ -14,5 +14,6 @@ sync.sh
 
 # Project
 config.json
+.env
 
 hll_discord_helper.db*
