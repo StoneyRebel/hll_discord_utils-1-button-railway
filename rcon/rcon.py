@@ -129,7 +129,7 @@ async def get_Maps_To_Vote ():
         return None
 
 async def get_Balance_Return (limits):
-    return 0, 0, [0] * (len (limits) + 1), [0] * (len (limits) + 1)
+    return 0, 0, [0] * (len (limits) + 1), [0] * (len (limits) + 1), 0, 0
 
 async def get_Balance (limits = [50, 100, 250], weights = [0.25, 0.5, 1, 1.25]):
     try:

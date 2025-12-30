@@ -537,19 +537,22 @@ class Balance():
         return counts
 
     def calculate_Balance (self):
-        if len (self.axis) >= 1 and len (self.allies) >= 1:          
+        if len (self.axis) >= 1 and len (self.allies) >= 1:
             axis = self.get_Group_and_Count (self.axis, self.limits)
             allies = self.get_Group_and_Count (self.allies, self.limits)
 
             axis_weight = self.calculate_Weighted_Sum (axis, self.weights)
             allies_weight = self.calculate_Weighted_Sum (allies, self.weights)
 
-            allies_weight = self.calculate_Weighted_Sum (allies, self.weights)
+            # Calculate average levels
+            axis_avg = sum(self.axis) / len(self.axis)
+            allies_avg = sum(self.allies) / len(self.allies)
+
             logger.debug ("Combat strength Axis: " + str (axis_weight) + " / Combat strength Allies: " + str (allies_weight))
 
-            return axis_weight, allies_weight, axis, allies
+            return axis_weight, allies_weight, axis, allies, axis_avg, allies_avg
         else:
-            return 0, 0, [0] * (len (self.limits) + 1), [0] * (len (self.limits) + 1)
+            return 0, 0, [0] * (len (self.limits) + 1), [0] * (len (self.limits) + 1), 0, 0
             
     def parse_Json (self, json_string):
         try:

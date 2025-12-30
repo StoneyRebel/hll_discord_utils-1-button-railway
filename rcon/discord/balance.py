@@ -73,7 +73,7 @@ class Balance (commands.Cog, DiscordBase):
 
     async def update_message (self):
         try:
-            axis_weight, allies_weight, axis, allies = await rcon.get_Balance (self.limits , self.weights)
+            axis_weight, allies_weight, axis, allies, axis_avg, allies_avg = await rcon.get_Balance (self.limits , self.weights)
             logger.debug ("Allies weight: " + str (allies_weight) + " / Axis weight: " + str (axis_weight))
 
             wt = discord.Embed(
@@ -81,13 +81,18 @@ class Balance (commands.Cog, DiscordBase):
                 description="This function is intended to show how balanced a game is.\n\n",
                 color=discord.Color.green(),
                 )
-   
-            wt.add_field(name="\u200b", value="", inline=False)   
-            
-            text = ("```" + 
+
+            wt.add_field(name="\u200b", value="", inline=False)
+
+            text = ("```" +
                     "    Allies: " + str (round (allies_weight, 1)) + " vs. Axis: " + str (round (axis_weight, 1)) + "```")
-                
+
             wt.add_field(name="Combat strength", value=text, inline=True)
+
+            avg_text = ("```" +
+                    "    Allies: " + str (round (allies_avg, 1)) + " vs. Axis: " + str (round (axis_avg, 1)) + "```")
+
+            wt.add_field(name="Average level", value=avg_text, inline=True)
             wt.add_field(name="\u200b", value="", inline=False) 
 
             table = self.generate_Table (self.limits, allies, axis)
